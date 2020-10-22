@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>CRUD</title>
+</head>
+<body>
+    <div id="crud" class="container m-3">
+        <h1 class="text-danger text-center font-weight-light mb-5">{{titulo}}</h1>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h5  class="my-2 text-info">Registrar Ideas</h5 >
+                <input v-model="idea" class="form-control w-75 border border-info" type="text" placeholder="ingrese tarea" >
+                <h5  class="my-2 text-info">Prioridad</h5 >
+                <select v-model="tipo" class="form-control mt-2 border border-info w-75">
+                    <option value="n">Normal</option>
+                    <option value="d">Difícil</option>
+                    <option value="m">Muy difícil</option>
+                  </select>
+                  <button @click="agregar()" class="btn btn-outline-info mt-5 mb-3 btn-block w-75">AGREGAR</button>
+            </div>
+            <div class="col-12 col-sm-6">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-primary" scope="col">Idea</th>
+                        <th class="text-primary" scope="col">Prioridad</th>
+                        <th class="text-primary" scope="col">Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(i,index) of datos">
+                        <td>{{i.nombre}}</td>
+                        <td>
+                <span v-if="i.prioridad === 'n' " class="text-primary">NORMAL</span>
+                <span v-else-if="i.prioridad === 'd' " class="text-warning">DIFICIL</span> 
+                <span v-else-if="i.prioridad === 'm' " class="text-danger">MUY DIFICIL</span> 
+                        </td>
+                        <td><button @click="eliminar(index)" class="btn btn-danger">eliminar</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="vue.js"></script>
+</body>
+</html>
